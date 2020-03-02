@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><suite name="All Test Suite">
+    <parameter name="url" value="https://www.hippovideo.io/"/>
+    <parameter name="mail" value="akselvan44@gmail.com"/>
+    <parameter name="password" value="kalaisel"/>
+    <parameter name="plan" value="business"/>
+    <parameter name="name" value="artist"/>
+    <parameter name="company" value="bubble"/>
+    <parameter name="phNo" value="9787086356"/>
+    <parameter name="videoDuration" value="5"/>
+    <parameter name="publishMail" value="klisvn@gmail.com"/>
+    <parameter name="publishFirstName" value="Selvan"/>
+    <parameter name="publishSubject" value="Testimonial video"/>
+    <test verbose="2" preserve-order="true" name="hippo">
+            <classes>
+                <class name="Main">
+                    <methods>
+                        <include name="getLink"/>
+                        <include name="signUp"/>
+                        <include name="fillBusinessDetails"/>
+                        <include name="startVideo"/>
+                        <include name="personalizeVideo"/>
+                        <include name="publishVideo"/>
+                    </methods>
+                </class>
+            </classes>
+</test>
+</suite>

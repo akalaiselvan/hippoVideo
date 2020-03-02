@@ -132,5 +132,7 @@ public class PublishVideo extends Base {
                 clickElement(gmailPwdNext);
             }
         }
+        ArrayList<String> back = new ArrayList<String>(driver.getWindowHandles());
+        driver.switchTo().window(back.get(0));
     }
 }

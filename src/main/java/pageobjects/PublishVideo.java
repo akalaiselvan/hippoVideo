@@ -1,6 +1,8 @@
 package pageobjects;
 
 import helpers.Base;
+import org.apache.log4j.Logger;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +11,9 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.ArrayList;
 
 public class PublishVideo extends Base {
+
+    private static Logger log=Logger.getLogger(PublishVideo.class);
+
     public PublishVideo(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -59,6 +64,8 @@ public class PublishVideo extends Base {
     @FindBy(id = "passwordNext")
     WebElement gmailPwdNext;
 
+    @FindBy(id="submit_approve_access")
+    WebElement gmailAllowAcess;
 
     @FindBy(id = "addContacts")
     WebElement addContacts;
@@ -79,7 +86,7 @@ public class PublishVideo extends Base {
     WebElement mailSend;
 
 
-    public void publishVideo() {
+    /*public void publishVideo() {
         clickElement(publishTab);
         if (isDisplayed(emailTextBox)) {
             emailTextBox.sendKeys("klisvn@gmail.com");
@@ -92,17 +99,19 @@ public class PublishVideo extends Base {
             System.out.println("Mail Sent Sucessfully");
         }
     }
+*/
 
-
-    public void startVideoCampaign() {
+    public void startVideoCampaign(String mail,String pwd) {
+        log.info("Campaigning video..!");
         clickElement(videoCampaignTab);
         clickElement(videoCampaign);
         clickElement(configureMail);
-        configureGmail();
+        configureGmail(mail,pwd);
     }
 
 
     public void addContactAndSendMail(String mail, String fName, String mailSub) {
+        log.info("Adding contact : "+mail);
         clickElement(addContactToMail);
         if (isDisplayed(mailId)) {
             mailId.sendKeys(mail);
@@ -118,18 +127,22 @@ public class PublishVideo extends Base {
     }
 
 
-    private void configureGmail() {
+    private void configureGmail(String mail,String pwd) {
+        log.info("Configuring gmail");
         ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
         clickElement(gmailConfigure);
         ArrayList<String> mailtabs = new ArrayList<String>(driver.getWindowHandles());
         driver.switchTo().window(mailtabs.get(2));
         if (isDisplayed(gmailTxtBox)) {
-            gmailTxtBox.sendKeys("klisvn@gmail.com");
-            clickElement(gmailNext);
+            gmailTxtBox.sendKeys(mail);
+            gmailTxtBox.sendKeys(Keys.ENTER);
+            //clickElement(gmailNext);
             if (isDisplayed(gmailPassword)) {
-                gmailPassword.sendKeys("ksjrgm1028");
-                clickElement(gmailPwdNext);
+                gmailPassword.sendKeys(pwd);
+                gmailPassword.sendKeys(Keys.ENTER);
+                //clickElement(gmailPwdNext);
+                clickElement(gmailAllowAcess);
             }
         }
         ArrayList<String> back = new ArrayList<String>(driver.getWindowHandles());

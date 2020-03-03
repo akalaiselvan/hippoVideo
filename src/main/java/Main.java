@@ -61,10 +61,16 @@ public class Main extends Base {
     }
 
     @Test
+    @Parameters({"campaignMail","campaignPwd"})
+    public void startCampaign(String mail,String pwd){
+        PublishVideo publishVideo=new PublishVideo(driver);
+        publishVideo.startVideoCampaign(mail, pwd);
+    }
+
+    @Test
     @Parameters({"publishMail","publishFirstName","publishSubject"})
     public void publishVideo(String publishMail,String publishFirstName,String publishSubject){
         PublishVideo publishVideo=new PublishVideo(driver);
-        publishVideo.startVideoCampaign();
         publishVideo.addContactAndSendMail(publishMail,publishFirstName,publishSubject);
     }
 

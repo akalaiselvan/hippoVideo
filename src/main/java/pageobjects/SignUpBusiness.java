@@ -1,6 +1,7 @@
 package pageobjects;
 
 import helpers.Base;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,6 +17,8 @@ public class SignUpBusiness extends Base {
 
     private String username;
     private String pwd;
+    private static Logger log=Logger.getLogger(SignUpBusiness.class);
+
     public SignUpBusiness(WebDriver driver,String username,String pwd) {
         this.driver=driver;
         this.username=username;
@@ -33,6 +36,7 @@ public class SignUpBusiness extends Base {
     WebElement submit;
 
     public void signUpWithNewUser(){
+        log.info("Signing up business..");
         if (isDisplayed(emailTextBox)){
             emailTextBox.sendKeys(this.username);
             if (isDisplayed(password)){

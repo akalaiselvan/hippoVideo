@@ -1,5 +1,6 @@
 package helpers;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -15,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 public class Base {
     public WebDriver driver;
     public static WebDriverWait wait;
-
+    private static Logger log=Logger.getLogger(Base.class);
     public Base(WebDriver driver) {
         this.driver = driver;
     }
@@ -53,6 +54,7 @@ public class Base {
     }
 
     public void clickElement(WebElement element){
+            log.info("Clicking Element "+element.toString());
             wait.until(ExpectedConditions.elementToBeClickable(element));
             element.click();
     }

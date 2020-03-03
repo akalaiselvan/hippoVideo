@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><suite name="All Test Suite">
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><suite name="hippoVid">
     <parameter name="url" value="https://www.hippovideo.io/"/>
     <parameter name="mail" value="******@gmail.com"/>
     <parameter name="password" value="*****"/>
